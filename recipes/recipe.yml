@@ -16,7 +16,6 @@ modules:
     repos:
       - https://raw.githubusercontent.com/abirkel/maccel-rpm/main/maccel.repo
     install:
-      - maccel
       - akmod-maccel
 
   - type: signing  # Sets up policy & signing files for signed images
