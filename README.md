@@ -1,15 +1,27 @@
 # bluebuild-aurora &nbsp; [![bluebuild build badge](https://github.com/abirkel/bluebuild-aurora/actions/workflows/build.yml/badge.svg)](https://github.com/abirkel/bluebuild-aurora/actions/workflows/build.yml)
 
-See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
+A custom [BlueBuild](https://blue-build.org/) image based on [Aurora](https://getfedora.org/en/silverblue/) (Fedora Atomic Desktop with KDE Plasma) that includes the [maccel](https://github.com/abirkel/maccel) kernel module for advanced mouse acceleration control.
 
-After setup, it is recommended you update this README to describe your custom image.
+## About maccel
+
+maccel is a Linux kernel module that provides sophisticated mouse acceleration curves and control. This image includes:
+
+- **maccel**: User-space tools and configuration for mouse acceleration
+- **akmod-maccel**: Automatic kernel module that rebuilds when the kernel updates
+
+With maccel, you can:
+- Configure custom mouse acceleration curves
+- Fine-tune pointer responsiveness
+- Maintain consistent behavior across kernel updates (via akmod)
 
 ## Installation
 
 > [!WARNING]  
 > [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
 
-To rebase an existing atomic Fedora installation to the latest build:
+### Rebasing to bluebuild-aurora
+
+To rebase an existing atomic Fedora installation to the latest bluebuild-aurora build:
 
 - First rebase to the unsigned image, to get the proper signing keys and policies installed:
   ```
@@ -29,6 +41,25 @@ To rebase an existing atomic Fedora installation to the latest build:
   ```
 
 The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
+
+### maccel Configuration
+
+After rebasing to bluebuild-aurora, the maccel kernel module and tools are automatically installed. The akmod-maccel package will automatically rebuild the kernel module whenever the kernel is updated.
+
+To verify maccel is installed and loaded:
+
+```bash
+# Check if maccel packages are installed
+rpm -qa | grep maccel
+
+# Check if the maccel kernel module is available
+modinfo maccel
+
+# Load the maccel module (if not already loaded)
+sudo modprobe maccel
+```
+
+For maccel configuration and usage, refer to the [maccel documentation](https://github.com/abirkel/maccel).
 
 ## ISO
 
