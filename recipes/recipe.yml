@@ -6,15 +6,17 @@ name: bluebuild-aurora
 description: Aurora-based image with maccel mouse acceleration support
 
 # the base image to build on top of (FROM) and the version tag to use
-# Using aurora-dx-nvidia for NVIDIA GPU support
-base-image: ghcr.io/ublue-os/aurora-dx-nvidia
+base-image: ghcr.io/ublue-os/aurora-nvidia
 image-version: latest
-
-# custom tags for testing builds
-alt-tags:
-  - testing
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
 modules:
+  - type: rpm-ostree
+    repos:
+      - https://raw.githubusercontent.com/abirkel/maccel-rpm/main/maccel.repo
+    install:
+      - kmod-maccel
+      - maccel
+
   - type: signing  # Sets up policy & signing files for signed images
