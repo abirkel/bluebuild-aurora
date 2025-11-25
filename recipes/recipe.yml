@@ -6,7 +6,8 @@ name: bluebuild-aurora
 description: Aurora-based image with maccel mouse acceleration support
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/aurora
+# Using aurora-dx-nvidia for NVIDIA GPU support
+base-image: ghcr.io/ublue-os/aurora-dx-nvidia
 image-version: latest
 
 # custom tags for testing builds
