@@ -12,11 +12,4 @@ image-version: latest
 # module configuration, executed in order
 # you can include multiple instances of the same module
 modules:
-  - type: rpm-ostree
-    repos:
-      - https://raw.githubusercontent.com/abirkel/maccel-rpm/main/maccel.repo
-    install:
-      - kmod-maccel
-      - maccel
-
   - type: signing  # Sets up policy & signing files for signed images
